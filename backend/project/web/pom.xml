@@ -11,6 +11,11 @@
   <artifactId>web</artifactId>
   <packaging>war</packaging>
   <dependencies>
+  	<dependency>
+	  	<groupId>root.project</groupId>
+			<artifactId>ejbs</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>				
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
