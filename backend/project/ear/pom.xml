@@ -40,7 +40,7 @@
 							<groupId>root.project</groupId>
 							<artifactId>web</artifactId>
 							<contextRoot>/schooltrip</contextRoot>
-						</webModule>
+						</webModule>						
 					</modules>
 				</configuration>
 			</plugin>
