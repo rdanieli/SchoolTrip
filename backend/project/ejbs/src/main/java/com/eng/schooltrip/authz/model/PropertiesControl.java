@@ -8,13 +8,13 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class PropertiesControl {
 	
-	@Column(name="ctrl_date_ad")
+	@Column(name="ctrl_date_add")
 	private Date dateAdd;
 	
 	@Column(name="ctrl_date_up")
 	private Date dateUpdate;
 
-	@Column(name="ctrl_user_ad")
+	@Column(name="ctrl_user_add")
 	private String userAdd;
 
 	@Column(name="ctrl_user_up")
