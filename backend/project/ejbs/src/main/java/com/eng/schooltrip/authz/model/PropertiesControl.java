@@ -1,57 +1,41 @@
 package com.eng.schooltrip.authz.model;
 
-import java.util.Calendar;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Embeddable
 public class PropertiesControl {
 	
-	@Column
-	@Temporal(TemporalType.TIME)
-	private Calendar dateAdd;
+	@Column(name="ctrl_date_ad")
+	private Date dateAdd;
 	
-	@Column
-	@Temporal(TemporalType.TIME)
-	private Calendar dateUpdate;
+	@Column(name="ctrl_date_up")
+	private Date dateUpdate;
 
-	@Column
+	@Column(name="ctrl_user_ad")
 	private String userAdd;
 
-	@Column
+	@Column(name="ctrl_user_up")
 	private String userUpdate;
 
-	@Column
+	@Column(name="ctrl_last_ip")
 	private String lastIp;
 
-	/**
-	 * @return the dateAdd
-	 */
-	public Calendar getDateAdd() {
+	public Date getDateAdd() {
 		return dateAdd;
 	}
 
-	/**
-	 * @param dateAdd the dateAdd to set
-	 */
-	public void setDateAdd(Calendar dateAdd) {
+	public void setDateAdd(Date dateAdd) {
 		this.dateAdd = dateAdd;
 	}
 
-	/**
-	 * @return the dateUpdate
-	 */
-	public Calendar getDateUpdate() {
+	public Date getDateUpdate() {
 		return dateUpdate;
 	}
 
-	/**
-	 * @param dateUpdate the dateUpdate to set
-	 */
-	public void setDateUpdate(Calendar dateUpdate) {
+	public void setDateUpdate(Date dateUpdate) {
 		this.dateUpdate = dateUpdate;
 	}
 
