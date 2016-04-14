@@ -15,6 +15,8 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 //+---------------+--------------+------+-----+---------+-------+
 //| Field         | Type         | Null | Key | Default | Extra |
 //+---------------+--------------+------+-----+---------+-------+
@@ -64,6 +66,7 @@ public class Client implements Serializable {
 	private Long phone;
 	
 	@Column(name="secret")
+	@JsonIgnore
 	private String password;
 	
 	@Embedded
