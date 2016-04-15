@@ -1,6 +1,7 @@
-package com.eng.schooltrip.genericdao;
+package com.eng.schooltrip.dao;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * The basic GenericDao interface with CRUD methods
@@ -19,4 +20,6 @@ public interface GenericDao<T, PK extends Serializable>
     void update(T transientObject);
 
     void delete(T persistentObject);
+    
+    List<T> find(T seachEntity);
 }
