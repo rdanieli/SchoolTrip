@@ -29,11 +29,11 @@ public class Token implements Serializable {
 	
 	@Column(name="token")
 	@JsonProperty("access_token")
-	public String token;
+	private String token;
 	
 	@Column(name="creation")
 	@JsonProperty("creation_date")
-	public Date creationDate;
+	private Date creationDate;
 
 	/**
 	 * @return the id

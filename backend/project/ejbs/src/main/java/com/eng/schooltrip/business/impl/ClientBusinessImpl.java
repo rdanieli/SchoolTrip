@@ -26,8 +26,7 @@ public class ClientBusinessImpl implements SimpleCRUD<Client, Long>{
 
 	@Override
 	public Client read(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return clientDAO.read(id);
 	}
 
 
