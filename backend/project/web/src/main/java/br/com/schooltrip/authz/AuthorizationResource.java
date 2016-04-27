@@ -11,6 +11,7 @@ import javax.ws.rs.core.Response.Status;
 
 import com.eng.schooltrip.authz.BasicAuthCredentials;
 import com.eng.schooltrip.authz.model.Token;
+import com.eng.schooltrip.infra.RNException;
 import com.eng.schooltrip.manager.AuthorizationBean;
 
 @Path("/authz")
@@ -23,10 +24,14 @@ public class AuthorizationResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@POST
 	public Response login(@HeaderParam("authorization") String auth64) {
-		Token t = authorizationBean.login(BasicAuthCredentials.createCredentialsFromHeader(auth64));
-		
-		if(t != null){
-			return Response.ok(t).build();
+		try {
+			Token t = authorizationBean.login(BasicAuthCredentials.createCredentialsFromHeader(auth64));
+			
+			if(t != null){
+				return Response.ok(t).build();
+			}
+		} catch (RNException e) {
+			Response.ok(e.getMessage()).status(Status.UNAUTHORIZED).build();
 		}
 		
 		return Response.status(Status.UNAUTHORIZED).build();

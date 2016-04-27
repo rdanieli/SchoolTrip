@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -41,6 +42,15 @@ public abstract class GenericDaoImpl<T, PK extends Serializable> implements Gene
 	}
 	
 	public List<T> find(T searchEntity){
+		Query query = queryBuilder(searchEntity);
+		return query.getResultList();
+	}
+
+	/**
+	 * @param searchEntity
+	 * @return
+	 */
+	private Query queryBuilder(T searchEntity) {
 		StringBuilder sb = new StringBuilder("SELECT e FROM ");
 		sb.append(searchEntity.getClass().getSimpleName());
 		sb.append(" e ");
@@ -72,8 +82,20 @@ public abstract class GenericDaoImpl<T, PK extends Serializable> implements Gene
 		for (int i = 0; i < values.size(); i++) {
 			query.setParameter(i + 1, values.get(i));
 		}
+		return query;
+	}
+	
+	public T findUnique(T searchEntity) {
+		Query query = queryBuilder(searchEntity);
 		
-		return query.getResultList();
+		T r  = null;
+		try {
+			r = (T) query.getSingleResult();			
+		} catch (NoResultException e) {
+			//silent
+		}
+		
+		return r;
 	}
 	
 	@SuppressWarnings("unchecked")
