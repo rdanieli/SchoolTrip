@@ -52,7 +52,7 @@ public class ClientBusinessImpl implements SimpleCRUD<Client, Long>{
 		return null;
 	}
 	
-	public Client checkClientCredentials(BasicAuthCredentials authCredentials){
+	public Client checkClientCredentials(BasicAuthCredentials authCredentials) throws RNException{
 		Client searchClient = new Client();
 		searchClient.setEmail(authCredentials.getUsername());
 		searchClient.setPassword(authCredentials.getPassword());

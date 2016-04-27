@@ -1,6 +1,7 @@
 package br.com.schooltrip.authz;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -30,7 +31,7 @@ public class AuthorizationResource {
 			if(t != null){
 				return Response.ok(t).build();
 			}
-		} catch (RNException e) {
+		} catch (RNException | EJBException e) {
 			Response.ok(e.getMessage()).status(Status.UNAUTHORIZED).build();
 		}
 		
