@@ -22,4 +22,6 @@ public interface GenericDao<T, PK extends Serializable>
     void delete(T persistentObject);
     
     List<T> find(T seachEntity);
+    
+    T findUnique(T searchEntity);
 }

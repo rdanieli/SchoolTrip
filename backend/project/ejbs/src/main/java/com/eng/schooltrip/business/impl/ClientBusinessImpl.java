@@ -8,6 +8,7 @@ import javax.inject.Named;
 import com.eng.schooltrip.authz.BasicAuthCredentials;
 import com.eng.schooltrip.authz.model.Client;
 import com.eng.schooltrip.dao.ClientDAO;
+import com.eng.schooltrip.infra.RNException;
 
 @Named
 public class ClientBusinessImpl implements SimpleCRUD<Client, Long>{
@@ -51,18 +52,18 @@ public class ClientBusinessImpl implements SimpleCRUD<Client, Long>{
 		return null;
 	}
 	
-	public Client checkClientCredentials(BasicAuthCredentials authCredentials){
+	public Client checkClientCredentials(BasicAuthCredentials authCredentials) throws RNException{
 		Client searchClient = new Client();
 		searchClient.setEmail(authCredentials.getUsername());
 		searchClient.setPassword(authCredentials.getPassword());
 		
-		List<Client> clients = clientDAO.find(searchClient);
+		Client client = clientDAO.findUnique(searchClient);
 		
-		if(clients != null && !clients.isEmpty()) {
-			return clients.get(0);
+		if(client == null){
+			throw new RNException("User not found");
 		}
 		
-		return null;
+		return client;
 	}
 	
 	/**
