@@ -5,6 +5,8 @@
              version="2.0">
    <persistence-unit name="TRIP_DB" transaction-type="JTA">
       <jta-data-source>java:/AuthDS</jta-data-source>
+      <class>com.eng.framework.authz.model.Client</class>
+      <class>com.eng.framework.authz.model.Token</class>
       <properties>
 	     <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
          <property name="hibernate.show_sql" value="true"/>

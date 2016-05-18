@@ -3,30 +3,29 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-   <groupId>root</groupId>
-   <version>0.0.1-SNAPSHOT</version>
-   <artifactId>project</artifactId>
-   <packaging>pom</packaging>
-   
-   <modules>
-      <module>ejbs</module>
-      <module>ear</module>
-      <module>web</module>
-   </modules>
-   
-   <dependencyManagement>
-      <dependencies>
-         <dependency>
-            <groupId>root.project</groupId>
-            <artifactId>ejbs</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-         </dependency>
-         <dependency>
-            <groupId>root.project</groupId>
-            <artifactId>web</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-         </dependency>
-      </dependencies>
-   </dependencyManagement>
+	<groupId>root</groupId>
+	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>project</artifactId>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>ejbs</module>
+		<module>ear</module>
+		<module>web</module>
+	</modules>
+	<dependencies>
+		<dependency>
+			<groupId>root.project</groupId>
+			<artifactId>ejbs</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>root.project</groupId>
+			<artifactId>web</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 </project>
 </xml>

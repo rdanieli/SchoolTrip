@@ -30,14 +30,4 @@
 		<servlet-name>resteasy-servlet</servlet-name>
 		<url-pattern>/api/*</url-pattern>
 	</servlet-mapping>
-
-	<security-constraint>
-    <web-resource-collection>
-        <web-resource-name>API</web-resource-name>
-        <url-pattern>/*</url-pattern>
-    </web-resource-collection>
-    <user-data-constraint>
-        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-    </user-data-constraint>
-	</security-constraint>
 </web-app>

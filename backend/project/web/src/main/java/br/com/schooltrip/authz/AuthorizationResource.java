@@ -2,6 +2,7 @@ package br.com.schooltrip.authz;
 
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
+import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -10,9 +11,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.eng.schooltrip.authz.BasicAuthCredentials;
-import com.eng.schooltrip.authz.model.Token;
-import com.eng.schooltrip.infra.RNException;
+import com.eng.framework.authz.BasicAuthCredentials;
+import com.eng.framework.authz.model.Token;
+import com.eng.framework.infra.RNException;
 import com.eng.schooltrip.manager.AuthorizationBean;
 
 @Path("/authz")
@@ -20,6 +21,12 @@ public class AuthorizationResource {
 	
 	@EJB
 	private AuthorizationBean authorizationBean;
+	
+	@Path("/oi")
+	@GET
+	public String oi() {
+		return "Estou ativo.";
+	} 
 	
 	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -38,10 +45,11 @@ public class AuthorizationResource {
 		return Response.status(Status.UNAUTHORIZED).build();
 	}
 
-	/**
-	 * @param authorizationManager the authorizationManager to set
-	 */
-	public void setAuthorizationManager(AuthorizationBean authorizationBean) {
+	public AuthorizationBean getAuthorizationBean() {
+		return authorizationBean;
+	}
+
+	public void setAuthorizationBean(AuthorizationBean authorizationBean) {
 		this.authorizationBean = authorizationBean;
 	}
 }

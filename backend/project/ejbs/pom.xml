@@ -35,6 +35,12 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>5.1.0.Final</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.rafael.framework</groupId>
+			<artifactId>core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<resources>
@@ -60,10 +66,29 @@
 					<ejbVersion>3.1</ejbVersion>
 					<archive>
 						<manifest>
-							<addClasspath>true</addClasspath>
+							<addClasspath>false</addClasspath>
 						</manifest>
 					</archive>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+				    <execution>
+				        <id>copy-dependencies</id>
+				        <phase>package</phase>
+				        <goals>
+				            <goal>copy-dependencies</goal>
+				        </goals>
+				        <configuration>
+				            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+				            <overWriteReleases>false</overWriteReleases>
+				            <overWriteSnapshots>false</overWriteSnapshots>
+				            <overWriteIfNewer>true</overWriteIfNewer>
+				        </configuration>
+				    </execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

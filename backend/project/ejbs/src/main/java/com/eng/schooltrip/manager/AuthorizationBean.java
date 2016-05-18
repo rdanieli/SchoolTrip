@@ -2,26 +2,38 @@ package com.eng.schooltrip.manager;
 
 import java.sql.Date;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-import com.eng.schooltrip.authz.BasicAuthCredentials;
-import com.eng.schooltrip.authz.model.Client;
-import com.eng.schooltrip.authz.model.Token;
-import com.eng.schooltrip.business.impl.ClientBusinessImpl;
-import com.eng.schooltrip.infra.RNException;
-import com.eng.schooltrip.security.SecurityTokenGeneration;
+import com.eng.framework.authz.BasicAuthCredentials;
+import com.eng.framework.authz.model.Client;
+import com.eng.framework.authz.model.Token;
+import com.eng.framework.business.impl.ClientRN;
+import com.eng.framework.infra.RNException;
+import com.eng.framework.security.SecurityTokenGeneration;
 
 @Stateless
 public class AuthorizationBean {
 	
+	@PersistenceContext
+	EntityManager entityManager;
+
 	@Inject
-	private ClientBusinessImpl clientBusiness;
+	private ClientRN clientRN;
+	
+	@PostConstruct
+	public void init(){
+		clientRN.setEntityManager(entityManager);
+	}
 	
 	public Token login(BasicAuthCredentials credentials) throws RNException, EJBException{
 		try {
-			Client c = clientBusiness.checkClientCredentials(credentials);
+			Client c = clientRN.checkClientCredentials(credentials);
 			
 			Token token = null;
 			if(c != null){
@@ -29,6 +41,8 @@ public class AuthorizationBean {
 				token.setCreationDate(new Date(System.currentTimeMillis()));
 				token.setClient(c);
 				token.setToken(SecurityTokenGeneration.generateToken());
+				
+				//persistir o token
 			}
 			
 			return token;
@@ -37,10 +51,11 @@ public class AuthorizationBean {
 		}
 	}
 
-	/**
-	 * @param clientBusiness the clientBusiness to set
-	 */
-	public void setClientBusiness(ClientBusinessImpl clientBusiness) {
-		this.clientBusiness = clientBusiness;
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 }
