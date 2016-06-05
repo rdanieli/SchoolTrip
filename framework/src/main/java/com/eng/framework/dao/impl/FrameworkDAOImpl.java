@@ -11,9 +11,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
+import com.eng.framework.authz.model.BaseDAO;
 import com.eng.framework.dao.FrameworkDAO;
 
-public abstract class FrameworkDAOImpl<T, PK extends Serializable> implements FrameworkDAO<T, PK> {
+public abstract class FrameworkDAOImpl<T extends BaseDAO, PK extends Serializable> implements FrameworkDAO<T, PK> {
 
 	EntityManager entityManager;
 

@@ -3,7 +3,9 @@ package com.eng.framework.business.impl;
 import java.io.Serializable;
 import java.util.List;
 
-public interface FrameworkCRUD<T, PK extends Serializable>
+import com.eng.framework.authz.model.BaseDAO;
+
+public interface FrameworkCRUD<T extends BaseDAO, PK extends Serializable>
 {
 
     void create(T newInstance);

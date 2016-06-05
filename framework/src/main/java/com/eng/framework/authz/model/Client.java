@@ -1,12 +1,10 @@
 package com.eng.framework.authz.model;
 
-import java.io.Serializable;
 import java.sql.Date;
 import java.util.Arrays;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,8 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
-import com.eng.framework.bd.PropertiesControl;
 
 //+---------------+--------------+------+-----+---------+-------+
 //| Field         | Type         | Null | Key | Default | Extra |
@@ -38,7 +34,7 @@ import com.eng.framework.bd.PropertiesControl;
 
 @Entity
 @Table(name="CORE_CLIENTS")
-public class Client implements Serializable {
+public class Client extends BaseDAO {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
@@ -68,9 +64,6 @@ public class Client implements Serializable {
 	
 	@Column(name="secret")
 	private String password;
-	
-	@Embedded
-	PropertiesControl propertiesControl;
 	
 	/**
 	 * @return the idClient
@@ -164,20 +157,6 @@ public class Client implements Serializable {
 		this.phone = phone;
 	}
 
-	/**
-	 * @return the propertiesControl
-	 */
-	public PropertiesControl getPropertiesControl() {
-		return propertiesControl;
-	}
-
-	/**
-	 * @param propertiesControl the propertiesControl to set
-	 */
-	public void setPropertiesControl(PropertiesControl propertiesControl) {
-		this.propertiesControl = propertiesControl;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -198,7 +177,6 @@ public class Client implements Serializable {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
-		result = prime * result + ((propertiesControl == null) ? 0 : propertiesControl.hashCode());
 		return result;
 	}
 
@@ -248,11 +226,6 @@ public class Client implements Serializable {
 				return false;
 		} else if (!phone.equals(other.phone))
 			return false;
-		if (propertiesControl == null) {
-			if (other.propertiesControl != null)
-				return false;
-		} else if (!propertiesControl.equals(other.propertiesControl))
-			return false;
 		return true;
 	}
 
@@ -260,6 +233,6 @@ public class Client implements Serializable {
 	public String toString() {
 		return "Client [idClient=" + idClient + ", name=" + name + ", birth=" + birth + ", email=" + email
 				+ ", document=" + document + ", avatar=" + Arrays.toString(avatar) + ", phone=" + phone + ", password="
-				+ password + ", propertiesControl=" + propertiesControl + "]";
+				+ password + "]";
 	}
 }

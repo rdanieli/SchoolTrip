@@ -1,6 +1,5 @@
 package com.eng.framework.authz.model;
 
-import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -14,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="CORE_CLIENT_TOKENS")
-public class Token implements Serializable {
+public class Token extends BaseDAO{
 	
 	@Id
 	@Column(name="id")

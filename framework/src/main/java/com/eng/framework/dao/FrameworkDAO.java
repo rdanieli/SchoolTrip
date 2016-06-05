@@ -3,7 +3,9 @@ package com.eng.framework.dao;
 import java.io.Serializable;
 import java.util.List;
 
-public interface FrameworkDAO<T, PK extends Serializable>
+import com.eng.framework.authz.model.BaseDAO;
+
+public interface FrameworkDAO<T extends BaseDAO, PK extends Serializable>
 {
 
     void create(T newInstance);
