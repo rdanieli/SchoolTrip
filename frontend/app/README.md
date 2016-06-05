@@ -1,32 +1,15 @@
-This is an addon starter template for the [Ionic Framework](http://ionicframework.com/).
+Instalar o node.js com o gerenciador de pacotes NPM
 
-## How to use this template
+- instalar:
+	linha de comando: npm install -g grunt
+	linha de comando: npm intall -g bower
+	linha de comando: npm install -g cordova
+		- instalar o Android SDK com o SDK manager: Após instalar e configurar as variável de ambiente rodar:
+		Windows linha de comando:
+			set ANDROID_HOME=C:\ installation location \android-sdk
 
-*This template does not work on its own*. It is missing the Ionic library, and AngularJS.
+			set PATH=%PATH%;%ANDROID_HOME%\tools;%ANDROID_HOME%\platform-tools
+		- grunt platform:add:android
+		- servidor: grunt serve --consolelogs
 
-To use this, either create a new ionic project using the ionic node.js utility, or copy and paste this into an existing Cordova project and download a release of Ionic separately.
-
-### With the Ionic tool:
-
-Take the name after `ionic-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
-
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myApp sidemenu
-```
-
-Then, to run it, cd into `myApp` and run:
-
-```bash
-$ ionic platform add ios
-$ ionic build ios
-$ ionic emulate ios
-```
-
-Substitute ios for android if not on a Mac, but if you can, the ios development toolchain is a lot easier to work with until you need to do anything custom to Android.
-
-## Demo
-http://plnkr.co/edit/0RXSDB?p=preview
-
-## Issues
-Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/contribute/#issues) to the main Ionic repository. On the other hand, pull requests are welcome here!
+	linha de comando: bower install
