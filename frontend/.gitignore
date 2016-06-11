@@ -11,5 +11,8 @@ plugins
 *.swo
 *.log
 *.DS_Store
-
+.externalToolBuilders
+.project
+.settings
+.tern-project
 app/scripts/configuration.js
