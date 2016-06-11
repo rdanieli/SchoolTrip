@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('trip.controllers', ['trip.services'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -55,9 +55,20 @@ angular.module('starter.controllers', [])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
 
-.controller('LoginCtrl', function($scope, $stateParams) {
-	$scope.loginData = {};
+.controller('LoginCtrl', function($scope, $stateParams, LoginService) {
+	$scope.loginData = {
+		crypt : function(){
+			return btoa($scope.loginData.username+':'+ $scope.loginData.password);
+		}
+	};
 	$scope.doLogin = function() {
-		console.log('Doing login', $scope.loginData);
+		LoginService.doLogin($scope.loginData,function(response){
+			//Chamada de retorno
+			if(response.status == 200){
+				//autorizado
+			}else if(response.status == 401){
+				//nao autorizado
+			}
+		});
 	};
 });
