@@ -20,7 +20,7 @@ import com.eng.framework.security.SecurityTokenGeneration;
 public class AuthorizationBean {
 	
 	@PersistenceContext
-	EntityManager entityManager;
+	private EntityManager entityManager;
 
 	@Inject
 	private ClientRN clientRN;
